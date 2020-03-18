@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 
-unsigned short currentday = 9;
+unsigned short currentday = 18;
 unsigned short currentmonth = 3;
 unsigned short currentyear = 2020;
 
@@ -224,13 +224,13 @@ struct SERVICEMAN
 
 	void setFullInfo()
 	{
-		name.setFullName();
+		name.setFullName();      
 
 		address.setHomeAddress();
 
 		cout << "Enter nationality" << endl;
 		cin.ignore(std::cin.rdbuf()->in_avail());
-		cin.getline(nationality, 30);
+		cin.getline(nationality, 30); // :D
 
 		date.setDate();
 
@@ -282,20 +282,8 @@ void InitOfArray(SERVICEMAN* Array, unsigned short* dimension)
 {
 	for (size_t i = 0; i < *dimension; i++)
 	{
-		(Array + i)->setFullInfo();
+		(Array + i)->setFullInfo(); // 
 	}
-}
-
-bool AlphabetComparison(SERVICEMAN* Array, size_t j)
-{
-	for (size_t i = 0; i < 56; i++)
-	{
-		if (int((Array + j)->name.lastname[i]) > int((Array + j + 1)->name.lastname[i]))
-			return true;
-		else if (int((Array + j)->name.lastname[i]) < int((Array + j + 1)->name.lastname[i]))
-			return 0;
-	}
-	return 0;
 }
 
 void AlphabetSorting(SERVICEMAN* Array, unsigned short* dimension)
@@ -304,7 +292,7 @@ void AlphabetSorting(SERVICEMAN* Array, unsigned short* dimension)
 	{
 		for (size_t j = 0; j < *dimension - 1; j++)
 		{
-			if (AlphabetComparison(Array, j))
+			if (_stricmp((Array + j)->name.lastname, (Array + j + 1)->name.lastname) > 0)
 				swap(*(Array + j), *(Array + j + 1));
 		}
 	}
@@ -493,7 +481,7 @@ int main()
 
 	SERVICEMAN* Array = new SERVICEMAN[dimension];
 
-	InitOfArray(Array, ptrdimension);
+	InitOfArray(Array, ptrdimension); 
 
 	Interface(Array, ptrdimension);
 }
